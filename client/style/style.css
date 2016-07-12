@@ -1,0 +1,29 @@
+/*.img-responsive {
+	max-width: 10%;  
+	max-height: auto;  
+}*/
+
+/*#addTableID {*/
+	/*visibility: hidden;*/
+/*}*/
+
+#x {
+	cursor: pointer
+}
+
+/*#addTableID {
+	width: 40;
+}*/
+
+.fieldError {
+	border-color: red;
+	border-width: 3px;
+}
+
+#errorMessage {
+	display: none;
+}
+
+/*body {
+	background-color: black
+}*/
