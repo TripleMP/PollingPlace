@@ -14,6 +14,9 @@
 body, html {
 	background: linear-gradient(to bottom, #f7fbfc 0%,#d9edf2 40%,#add9e4 100%);
 }
+.displaynone {
+  display: none;
+}
 
 h1 {
 	font-family: 'Pacifico', cursive;
@@ -142,4 +145,8 @@ select:focus, select:active {
   outline:0;
 }
 
+select.filterForm {
+  margin-bottom: 5px;
+  display:block;
+}
 
