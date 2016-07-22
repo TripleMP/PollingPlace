@@ -8,6 +8,8 @@ export const SUBMIT_PLAYER = 'SUBMIT-PLAYER';
 export const POSSIBLE_LOCATIONS = 'POSSIBLE-LOCATIONS'; 
 export const DETERMINED_LOCATION = 'DETERMINED-LOCATION';
 export const CLEAR_LOCATIONS = 'CLEAR-LOCATIONS';
+export const FILTER_GAMES = 'FILTER-GAMES';
+export const FILTER_SEARCH = 'FILTER-SEARCH';
 
 export function clearPossibleLocations() {
   return function(dispatch) {
@@ -46,10 +48,27 @@ export function searchGames(searchObj) {
         dispatch({ type: SEARCH_GAMES, payload: response.data })
       })
       .catch(function(error) {
+        console.log(error);
         console.log('error in the search games axios calls')
       })
   }
 }
+
+export function filterGame(filteredGames) {
+  console.log("filtering game");
+  return {
+    type: FILTER_GAMES,
+    payload: filteredGames
+  };
+}
+
+export function filterSearch(filterOption) {
+  return {
+    type: FILTER_SEARCH,
+    payload: filterOption
+  };
+}
+
 
 export function submitGame(gameObj) {
   return function(dispatch) {
