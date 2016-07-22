@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import { searchGames, clearPossibleLocations } from '../actions/index';
 import $ from 'jquery';
 
-class Search extends Component { 
+class Search extends Component {
 
   constructor(props) {
     super(props)
@@ -30,8 +30,7 @@ class Search extends Component {
     })
   }
 
-  onLocationSubmit(args) {  
-  console.log(arguments,'args')
+  onLocationSubmit(args) {
   let fixedLocation;
     if(typeof arguments[0] === 'string') {
       fixedLocation = arguments[0];
@@ -75,26 +74,25 @@ render() {
           <div className='row'>
             <form className="inputBox" onSubmit={this.onLocationSubmit.bind(this)}>
               <input value={this.state.locationInput} onChange={this.onLocationEnter.bind(this)} type='text' placeholder='Enter a Location'/>
-               
+
             <select className="browser-default" onChange={ (e) => { this.onDropDown(e) } }>
               <option value="2">2 miles</option>
               <option value="5">5 miles</option>
               <option value="10">10 miles</option>
             </select>
-         
             </form>
           </div>
 
-          
+
 
           <div>
             <h5 className="center-align"><strong>Welcome to PickUp! Enter your location to find a game near you!</strong></h5>
           </div>
-          
-        </div>           
+
+        </div>
       </div>
     )
-  }  
+  }
 }
 
 function mapStateToProps(state) {

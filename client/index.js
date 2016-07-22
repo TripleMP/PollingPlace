@@ -14,21 +14,28 @@ import Add from './public/containers/add'
 import GameListHome from './public/containers/gameListHome'
 import SearchHome from './public/containers/searchHome'
 
+import Images from './public/containers/images'
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+//import AvatarExampleSimple from './components/AvatarExampleSimple';
+
 const createStoreWithMiddleWare = applyMiddleware(thunk)(createStore);
 
  render((
     <Provider store={createStoreWithMiddleWare(reducer)}>
       <Router history={browserHistory}>
-        
+
         <Route path="/" component={App} >
           <IndexRoute component={Search} />
           <Route path="/Search" component={Search} />
           <Route path="/Add" component={Add} />
+
+          <Route path="/Images" component={Images} />
         </Route>
-        
+
         <Route path="/NavBar" component={NavBar} >
           <Route path="/SearchHome" component={SearchHome} />
           <Route path="/GameListHome" component={GameListHome} />
+
         </Route>
 
       </Router>

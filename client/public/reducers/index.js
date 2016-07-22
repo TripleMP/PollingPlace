@@ -6,7 +6,7 @@ import SearchGamesReducer from './reducer_searchGames'
 import PossibleLocations from './reducer_possibleLocations'
 import DeterminedLocation from './reducer_determinedLocation'
 import { reducer as form } from 'redux-form';
-
+import ImageDevelopers from './reducer_images'
 
 const rootReducer = combineReducers({
   games: GamesReducer,
