@@ -16,11 +16,12 @@ export function clearPossibleLocations() {
 }
 
 export function searchGames(searchObj) {
+  
   return function(dispatch) {
   axios({
     method: 'GET',
     url: 'https://maps.googleapis.com/maps/api/geocode/json',
-    params: {address: searchObj.location, key: 'AIzaSyAlCGs74Skpymw9LLAjkMg-8jQ1gIue9n8'}
+    params: {address: searchObj.location, miles: searchObj.miles , key: 'AIzaSyAlCGs74Skpymw9LLAjkMg-8jQ1gIue9n8'}
   })
     .then(function(response) {
       if(response.data.results.length > 1) {
@@ -34,7 +35,10 @@ export function searchGames(searchObj) {
 
           let determinedLocation = {address: response.data.results[0].formatted_address, lat: response.data.results[0].geometry.location.lat, lng: response.data.results[0].geometry.location.lng}
           dispatch({ type: DETERMINED_LOCATION, payload: determinedLocation })
-          return axios.get('/api/games', searchObj)
+          console.log(searchObj,'inside real search')
+          return axios.get('/api/games', {
+            params:searchObj
+          })
       }
     })
       .then(function(response) {

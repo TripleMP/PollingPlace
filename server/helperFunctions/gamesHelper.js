@@ -8,8 +8,28 @@ var Q = require('q')
 // This get will return an array of JSON games objects
 // from and includes its location info.
 exports.getGame = function(callback, params) {
+  //Utility function to grab my parameter
+var gup = function( name, url ) {
+      if (!url) url = location.href;
+      name = name.replace(/[\[]/,"\\\[").replace(/[\]]/,"\\\]");
+      var regexS = "[\\?&]"+name+"=([^&#]*)";
+      var regex = new RegExp( regexS );
+      var results = regex.exec( url );
+      return results == null ? null : results[1];
+    }
+  var miles = gup("miles",params);
+  var lat = gup("lat",params);
+  var lng = gup("lng",params);
 
-  var check = 'SELECT * FROM Locations AS l JOIN Games AS g ON l.id = g.locations_id JOIN Players AS p ON g.id = p.games_id';
+  var lat1 = lat - (miles*0.0112);
+  var lat2 = Number(lat) + (Number(miles)*0.0112)
+
+  var lng1 = lng - (miles*0.0112);
+  var lng2 = Number(lng) + (Number(miles)*0.0112);
+
+  console.log(lat1,lat2,lng1,lng2,'SQL')
+
+  var check = 'SELECT * FROM Locations AS l JOIN Games AS g ON l.id = g.locations_id JOIN Players AS p ON g.id = p.games_id WHERE (l.lat BETWEEN '+lat1+' AND '+lat2+') AND (l.lng BETWEEN '+lng1+' AND '+lng2+');';
   
   //var checkValues = [params.sport, params.rules, params.time, params.location, params.currentPlayers, params.maxPlayers, params.created_by];
 

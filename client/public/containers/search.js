@@ -10,7 +10,7 @@ class Search extends Component {
     super(props)
 
     this.state = {
-      dropDownSport: "",
+      dropDownMiles: 2,
       locationInput: ""
     }
   }
@@ -30,13 +30,8 @@ class Search extends Component {
     })
   }
 
-  sportsSelect(event) {
-    this.setState({
-      dropDownSport: event.target.value
-    })
-  } 
-
   onLocationSubmit(args) {  
+  console.log(arguments,'args')
   let fixedLocation;
     if(typeof arguments[0] === 'string') {
       fixedLocation = arguments[0];
@@ -48,7 +43,7 @@ class Search extends Component {
         locationInput: ''
       })
     }
-    this.props.searchGames( { sport: this.state.dropDownSport, location: fixedLocation } );
+    this.props.searchGames( { miles: this.state.dropDownMiles, location: fixedLocation } );
     this.props.clearPossibleLocations();
   }
 
@@ -56,6 +51,13 @@ class Search extends Component {
     this.setState({
       locationInput: event.target.value
     })
+  }
+
+  onDropDown(e){
+    this.setState({
+      dropDownMiles: e.target.value
+    })
+    console.log(this.state.dropDownMiles,'state dropdown')
   }
 
 render() {
@@ -70,11 +72,20 @@ render() {
             </div>
           </div>
 
-          <div>
+          <div className='row'>
             <form className="inputBox" onSubmit={this.onLocationSubmit.bind(this)}>
               <input value={this.state.locationInput} onChange={this.onLocationEnter.bind(this)} type='text' placeholder='Enter a Location'/>
-            </form>   
+               
+            <select className="browser-default" onChange={ (e) => { this.onDropDown(e) } }>
+              <option value="2">2 miles</option>
+              <option value="5">5 miles</option>
+              <option value="10">10 miles</option>
+            </select>
+         
+            </form>
           </div>
+
+          
 
           <div>
             <h5 className="center-align"><strong>Welcome to PickUp! Enter your location to find a game near you!</strong></h5>
@@ -97,4 +108,3 @@ function mapDispatchToProps(dispatch){
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Search)
-

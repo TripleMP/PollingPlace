@@ -6,11 +6,12 @@ module.exports = {
     get : function(req, res) {
       models.games.get(function(data, msg) {
         if (data) {
+          console.log(data,"SQL retour")
           res.send(data);
         } else {
           res.status(404).send(msg);
         }
-      })
+      },req.url)
     },
     post : function(req, res) {
       console.log('+++line 16: ', req.body)

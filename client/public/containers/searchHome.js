@@ -87,6 +87,23 @@ class SearchHome extends Component {
   }
 
   searchedGameCards() {
+    console.log(typeof this.props.searchGames,this.props.searchGames,"game array")
+    if (this.props.searchGames.length === 0){
+      return (
+        <div className="valign-wrapper">
+          <div className="valign center-block">
+            <div className="card card-panel hoverable">
+              <div className="card-title">
+                <h6 className="center-align">
+                  NO GAMES FOUND IN YOUR AREA
+                </h6>
+              </div> 
+            </div>
+          </div>
+        </div>
+
+        )
+    }
     return this.props.searchGames.map((game) => {
       return(
         <div className="valign-wrapper" data-id={game.id}>
