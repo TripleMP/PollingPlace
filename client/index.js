@@ -7,6 +7,7 @@ import { createStore } from 'redux'
 import thunk from 'redux-thunk'
 
 import App from './public/components/app'
+import Analytics from './public/components/analytics'
 import reducer from './public/reducers'
 import NavBar from './public/components/navBar'
 import Search from './public/containers/search'
@@ -33,6 +34,7 @@ const createStoreWithMiddleWare = applyMiddleware(thunk)(createStore);
         </Route>
 
         <Route path="/NavBar" component={NavBar} >
+          <Route path="/Analytics" component={Analytics} />
           <Route path="/SearchHome" component={SearchHome} />
           <Route path="/GameListHome" component={GameListHome} />
 

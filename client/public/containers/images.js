@@ -11,6 +11,7 @@ import FontIcon from 'material-ui/FontIcon';
 
 class Images extends Component {
   renderImage() {
+    console.log(this.props);
     return this.props.images.map((image) => {
       return (
       <MuiThemeProvider key={image.image}>

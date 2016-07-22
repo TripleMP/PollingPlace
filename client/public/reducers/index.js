@@ -15,6 +15,7 @@ const rootReducer = combineReducers({
   searchGames: SearchGamesReducer,
   possibleLocations: PossibleLocations,
   determinedLocation: DeterminedLocation,
+  imageDevelopers: ImageDevelopers,
   form: form
 })
 

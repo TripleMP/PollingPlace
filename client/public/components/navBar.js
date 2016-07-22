@@ -17,6 +17,7 @@ class NavBar extends Component {
             <ul className="right hide-on-med-and-down">
               <li><Link to="/SearchHome">MAP</Link></li>
               <li><Link to="/Add">ADD</Link></li>
+              <li><Link to="/Analytics">ANALYTICS</Link></li>
               <li><Link to="/">SEARCH BAR</Link></li>
 
             </ul>
