@@ -7,7 +7,7 @@ class NavBar extends Component {
   constructor(props) {
     super(props)
 }
-  
+
   nav() {
     return(
       <div className="navbar-fixed">
@@ -17,12 +17,14 @@ class NavBar extends Component {
             <ul className="right hide-on-med-and-down">
               <li><Link to="/SearchHome">MAP</Link></li>
               <li><Link to="/Add">ADD</Link></li>
+              <li><Link to="/Analytics">ANALYTICS</Link></li>
               <li><Link to="/">SEARCH BAR</Link></li>
+
             </ul>
           </div>
         </nav>
-      </div>       
-    )  
+      </div>
+    )
   }
 
   render() {
@@ -32,7 +34,7 @@ class NavBar extends Component {
           { this.nav() }
       </div>
         { this.props.children }
-    </div>  
+    </div>
     )
   }
 }

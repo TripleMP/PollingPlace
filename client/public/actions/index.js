@@ -3,11 +3,16 @@ import { browserHistory } from 'react-router';
 
 export const SUBMIT_GAME = 'SUBMIT-GAME';
 export const GET_GAMES = 'GET-GAMES';
-export const SEARCH_GAMES = 'SEARCH-GAMES'; 
+export const SEARCH_GAMES = 'SEARCH-GAMES';
 export const SUBMIT_PLAYER = 'SUBMIT-PLAYER'; 
-export const POSSIBLE_LOCATIONS = 'POSSIBLE-LOCATIONS'; 
+export const POSSIBLE_LOCATIONS = 'POSSIBLE-LOCATIONS';
 export const DETERMINED_LOCATION = 'DETERMINED-LOCATION';
 export const CLEAR_LOCATIONS = 'CLEAR-LOCATIONS';
+export const FILTER_GAMES = 'FILTER-GAMES';
+export const FILTER_SEARCH = 'FILTER-SEARCH';
+export const CREATE_GRAPH = 'CREATE-GRAPH';
+
+export let graphData;
 
 export function clearPossibleLocations() {
   return function(dispatch) {
@@ -16,11 +21,13 @@ export function clearPossibleLocations() {
 }
 
 export function searchGames(searchObj) {
+  
   return function(dispatch) {
+    let locationResponse
   axios({
     method: 'GET',
     url: 'https://maps.googleapis.com/maps/api/geocode/json',
-    params: {address: searchObj.location, key: 'AIzaSyAlCGs74Skpymw9LLAjkMg-8jQ1gIue9n8'}
+    params: {address: searchObj.location, miles: searchObj.miles , key: 'AIzaSyAlCGs74Skpymw9LLAjkMg-8jQ1gIue9n8'}
   })
     .then(function(response) {
       if(response.data.results.length > 1) {
@@ -32,20 +39,43 @@ export function searchGames(searchObj) {
           searchObj.address = response.data.results[0].formatted_address
           searchObj.name = response.data.results[0].formatted_address
 
+          locationResponse = searchObj;
+
           let determinedLocation = {address: response.data.results[0].formatted_address, lat: response.data.results[0].geometry.location.lat, lng: response.data.results[0].geometry.location.lng}
           dispatch({ type: DETERMINED_LOCATION, payload: determinedLocation })
-          return axios.get('/api/games', searchObj)
+          console.log(searchObj,'inside real search')
+          return axios.get('/api/games', {
+            params:searchObj
+          })
       }
     })
       .then(function(response) {
+        createGraphData(response, locationResponse);
         browserHistory.push('/SearchHome')
         dispatch({ type: SEARCH_GAMES, payload: response.data })
       })
       .catch(function(error) {
+        console.log(error);
         console.log('error in the search games axios calls')
       })
   }
 }
+
+export function filterGame(filteredGames) {
+  console.log("filtering game");
+  return {
+    type: FILTER_GAMES,
+    payload: filteredGames
+  };
+}
+
+export function filterSearch(filterOption) {
+  return {
+    type: FILTER_SEARCH,
+    payload: filterOption
+  };
+}
+
 
 export function submitGame(gameObj) {
   return function(dispatch) {
@@ -79,7 +109,7 @@ export function submitGame(gameObj) {
       .catch(function(error) {
         console.log(error, 'the error for the maps get call')
       })
-  }    
+  }
 }
 
 export function submitPlayer(playerObj) {
@@ -91,4 +121,8 @@ export function submitPlayer(playerObj) {
       .catch(function(error) {
       })
   }
+}
+
+export function createGraphData(response, location) {
+  graphData = { type: CREATE_GRAPH, payload: response.data, location: location };
 }

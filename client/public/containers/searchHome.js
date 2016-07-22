@@ -3,8 +3,10 @@ import {Gmaps, Marker, InfoWindow, Circle} from 'react-gmaps';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import $ from 'jquery';
-import { submitPlayer } from '../actions/index';
+import { submitPlayer, filterGame } from '../actions/index';
+import Filter from '../components/filterBar.js';
 import moment from 'moment';
+import _ from 'underscore';
 
 class SearchHome extends Component {
   constructor(props) {
@@ -86,7 +88,66 @@ class SearchHome extends Component {
     }
   }
 
+  filterGameCards(sortOpt) {
+
+    if (!sortOpt) {
+      sortOpt = 'id';
+
+    }
+    console.log("currentSort by ", sortOpt);
+    let newArr = this.props.searchGames;
+
+    // switch(sortOpt) {
+    //   case 'id': 
+    //     console.log("id case")        
+    //     newArr = _.sortBy(newArr, "id")
+
+    //     break;
+    //   case 'time': 
+    //     console.log("time case")
+    //     newArr = _.sortBy(newArr, "id")
+
+    //     break;
+    //   case 'sport': 
+    //     console.log("sport case")
+    //     newArr = _.sortBy(newArr, "sport")
+
+    //     console.log("new arr after sorting game", newArr);
+    //     break;
+    //   case 'playersNeeded': 
+    //     console.log("playersNeeded case")
+    //     newArr = _.sortBy(newArr, "id")
+
+    //     break;
+    // }
+    
+    // let newArr = this.props.searchGames.reverse();
+    // let newArr = _.sortBy(newArr, "id")
+    newArr.reverse();
+
+    this.props.filterGame(newArr);    
+  }
   searchedGameCards() {
+    console.log(typeof this.props.searchGames,this.props.searchGames,"game array")
+    if (this.props.searchGames.length === 0){
+      return (
+        <div className="valign-wrapper">
+          <div className="valign center-block">
+            <div className="card card-panel hoverable">
+              <div className="card-title">
+                <h6 className="center-align">
+                  NO GAMES FOUND IN YOUR AREA
+                </h6>
+              </div> 
+            </div>
+          </div>
+        </div>
+
+        )
+    }
+
+    this.filterGameCards(this.props.currentSort);
+
     return this.props.searchGames.map((game) => {
       return(
         <div className="valign-wrapper" data-id={game.id}>
@@ -149,6 +210,8 @@ class SearchHome extends Component {
       <div>
 
       <div id="gamesView">
+        <Filter submitFunc={this.props.submitGames}/>
+        
         {this.searchedGameCards()}
       </div>
     
@@ -180,13 +243,14 @@ class SearchHome extends Component {
 
 function mapStateToProps(state) {
   return {
-    searchGames: state.searchGames,
-    determinedLocation: state.determinedLocation
+    searchGames: state.searchGames.filteredGames,
+    determinedLocation: state.determinedLocation,
+    currentSort: state.searchGames.currentSort
   }
 }
 
 function mapDispatchToProps(dispatch){
-  return bindActionCreators({ submitPlayer }, dispatch);
+  return bindActionCreators({ submitPlayer, filterGame}, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(SearchHome)

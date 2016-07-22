@@ -1,6 +1,6 @@
 /*.img-responsive {
-	max-width: 10%;  
-	max-height: auto;  
+	max-width: 10%;
+	max-height: auto;
 }*/
 
 /*#addTableID {*/
@@ -13,6 +13,9 @@
 
 body, html {
 	background: linear-gradient(to bottom, #f7fbfc 0%,#d9edf2 40%,#add9e4 100%);
+}
+.displaynone {
+  display: none;
 }
 
 h1 {
@@ -100,4 +103,58 @@ html, body {
 
 .card.card-panel.hoverable {
 	width: 390px;
+}
+
+<<<<<<< 16cd4f1af8cdb79ee228c07051451a71419eaf6f
+select {
+  background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='50px' height='50px'><polyline points='46.139,15.518 25.166,36.49 4.193,15.519'/></svg>");
+  background-color:#E74C3C;
+  background-repeat:no-repeat;
+  background-position: right 10px top 15px;
+  background-size: 16px 16px;
+  color:white;
+  padding:12px;
+  width:98px;
+  font-family:arial,tahoma;
+  font-size:14px;
+  font-weight:lighter;
+  color:#fff;
+  text-align:center;
+  text-shadow:0 -1px 0 rgba(0, 0, 0, 0.25);
+  border-radius:3px;
+  -webkit-border-radius:3px;
+  -webkit-appearance: none;
+  border:0;
+  outline:0;
+  -webkit-transition:0.3s ease all;
+	   -moz-transition:0.3s ease all;
+	    -ms-transition:0.3s ease all;
+	     -o-transition:0.3s ease all;
+	        transition:0.3s ease all;
+}
+
+select:hover {
+  background-color:#2980B9;
+}
+
+svg:{
+	color: white;
+}
+
+select:focus, select:active {
+  border:0;
+  outline:0;
+}
+
+select.filterForm {
+  margin-bottom: 5px;
+  display:block;
+}
+
+.personImage {
+	display: inline-block;
+}
+
+.imagePadding {
+	margin: 75px 150px 100px 100px;
 }
