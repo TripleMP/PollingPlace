@@ -1,6 +1,6 @@
 /*.img-responsive {
-	max-width: 10%;  
-	max-height: auto;  
+	max-width: 10%;
+	max-height: auto;
 }*/
 
 /*#addTableID {*/
@@ -105,6 +105,7 @@ html, body {
 	width: 390px;
 }
 
+<<<<<<< 16cd4f1af8cdb79ee228c07051451a71419eaf6f
 select {
   background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='50px' height='50px'><polyline points='46.139,15.518 25.166,36.49 4.193,15.519'/></svg>");
   background-color:#E74C3C;
@@ -150,3 +151,10 @@ select.filterForm {
   display:block;
 }
 
+.personImage {
+	display: inline-block;
+}
+
+.imagePadding {
+	margin: 75px 150px 100px 100px;
+}

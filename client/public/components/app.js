@@ -12,6 +12,8 @@ export default class App extends Component {
           <div className="valign center-block">
             <button className="btn red waves-effect waves-light btn"><Link to="/Search" className="linkFont">Search</Link></button>
             <button className="btn red waves-effect waves-light btn"><Link to="/Add" className="linkFont">Add</Link></button>
+            <button className="btn red waves-effect waves-light btn"><Link to="/Images" className="linkFont">About Page</Link></button>
+
           </div>
         </div>
         {this.props.children}

@@ -3,9 +3,9 @@ import { browserHistory } from 'react-router';
 
 export const SUBMIT_GAME = 'SUBMIT-GAME';
 export const GET_GAMES = 'GET-GAMES';
-export const SEARCH_GAMES = 'SEARCH-GAMES'; 
+export const SEARCH_GAMES = 'SEARCH-GAMES';
 export const SUBMIT_PLAYER = 'SUBMIT-PLAYER'; 
-export const POSSIBLE_LOCATIONS = 'POSSIBLE-LOCATIONS'; 
+export const POSSIBLE_LOCATIONS = 'POSSIBLE-LOCATIONS';
 export const DETERMINED_LOCATION = 'DETERMINED-LOCATION';
 export const CLEAR_LOCATIONS = 'CLEAR-LOCATIONS';
 export const FILTER_GAMES = 'FILTER-GAMES';
@@ -102,7 +102,7 @@ export function submitGame(gameObj) {
       .catch(function(error) {
         console.log(error, 'the error for the maps get call')
       })
-  }    
+  }
 }
 
 export function submitPlayer(playerObj) {
