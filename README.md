@@ -1,6 +1,6 @@
 # Pickup
 
-[Pickup](pickupz.heroku.com)
+[Pickup](http://pickupz.heroku.com)
 
 Welcome to Pickup. This is a one stop shop for hosting and joining pickup sports games in your local area.
 
