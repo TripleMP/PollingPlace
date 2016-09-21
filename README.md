@@ -1,6 +1,6 @@
 # Pickup
 
-pickupz.heroku.com
+[Pickup](pickupz.heroku.com)
 
 Welcome to Pickup. This is a one stop shop for hosting and joining pickup sports games in your local area.
 
@@ -32,6 +32,8 @@ After the server is set up, on a new tab in the terminal run webpack (include th
 
 
 Now the app should be running on localhost. The default port is 3000.
+
+
 
 
 ## Contact ##
